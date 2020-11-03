@@ -1,0 +1,100 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="robots" content="noindex,nofollow,noarchive">
+
+    <title>Spin to Win</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>    
+    <script src="js/clipboard.js"></script>
+</head>
+<body class="page">
+    <div class="page__wrap">
+        <a href="#" onclick="go()" class="logo page__logo">
+            <img src="images/cash_cabin.png" class="logo__img" width="50" height="100" />
+        </a>
+        <div class="game-layout">
+            <img src="images/game_person_gonzo.png" class="game-person gonzo" alt="" />
+            <div class="game-layout__body">
+                <div class="wheel wheel_animated">
+                    <div class="wheel__spinner-holder">
+                        <img src="images/spin_wheel.png" class="wheel__spinner wheel__spinner_animated">         
+                        <div class="wheel__mask"></div>
+                        <div class="wheel__button-holder wheel__button-holder_blinking">
+                            <div class="wheel__button-pointer">
+                                <button class="circle-button wheel__button spin-trigger" onclick="play()">SPIN ME</button>
+                                <audio id="audio" src="media/sound.mp3"></audio>
+                                <audio src="media/coin.mp3" id="my_audio" loop="loop"></audio>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wheel__win-frame"></div>
+                </div>
+            </div>
+            <img src="images/game_person_jack.png" class="game-person jack" alt="" />
+        </div>
+        <div class="page__footer">
+            <div class="payments"></div>
+        </div>
+    </div>
+    <div class="fewmodal" id="modal-content">
+        <div class="fewmodal__body" id="level-1">
+            <div class="fewmodal__content">
+                <div class="popup">
+                    <h2 class="popup__title popup__accent">Congratulations!<br>You won</h2>
+                    <div class="spin-win">
+                        <p class="popup__win title"> 55 Free Spins </p>
+                        <img src="images/coins.png" alt="" class="popup-icon">            
+                        <p class="popup_grey_info">Click Claim Now to get your 50 Free Spins</p>
+                        <button class="btn btn-block btn--answer btn-claim-now"onclick="play()">Claim Now</button>
+                        <audio id="audio" src="media/coin.mp3"></audio>
+                    </div>
+                    <div class="question" id="question-1" style="display:none;">
+                        <p class="survey-question"><span class="question-number"> Question 1 of 4: </span><br>Have you ever won anything online before?</p>
+                        <button class="btn btn-block btn--answer btn-question-1 user_action" data-question="question_1_answer" data-answer="yes">Yes</button>
+                        <button class="btn btn-block btn--answer btn-question-1 user_action" data-question="question_1_answer" data-answer="no">No</button>
+                        <input type="hidden" id="question_1_answer" name="question_1_answer" value="" />
+                    </div>
+                    <div class="question" id="question-2" style="display:none;">
+                        <p class="survey-question"><span class="question-number"> Question 2 of 4: </span><br>Have you ever played at an online casino before? </p>
+                        <button class="btn btn-block btn--answer btn-question-2 user_action" data-question="question_2_answer" data-answer="yes">Yes</button>
+                        <button class="btn btn-block btn--answer btn-question-2 user_action" data-question="question_2_answer" data-answer="no">No, but I want to</button>
+                        <input type="hidden" id="question_2_answer" name="question_2_answer" value="" />
+                    </div>
+                    <div class="question" id="question-3" style="display:none;">
+                        <p class="survey-question"><span class="question-number"> Question 3 of 4: </span><br>Are you a Man or Woman?</p>
+                        <button class="btn btn-block btn--answer btn-question-3 user_action" data-question="gender" data-answer="female">Woman</button>
+                        <button class="btn btn-block btn--answer btn-question-3 user_action" data-question="gender" data-answer="male">Man</button>
+                        <input type="hidden" id="gender" name="gender" value="" />
+                    </div>
+                    <div class="question" id="question-4" style="display:none;">
+                        <p class="survey-question"><span class="question-number"> Question 4 of 4: </span><br>How old are you?</p>
+                        <button class="btn btn-block btn--answer btn-question-4 user_action" data-question="age_range" data-answer="18-29">18-29</button>
+                        <button class="btn btn-block btn--answer btn-question-4 user_action" data-question="age_range" data-answer="30-39">30-39</button>
+                        <button class="btn btn-block btn--answer btn-question-4 user_action" data-question="age_range" data-answer="40-49">40-49</button>
+                        <button class="btn btn-block btn--answer btn-question-4 user_action" data-question="age_range" data-answer="50+">50+</button>
+                        <input type="hidden" id="age_range" name="age_range" value="" />
+                    </div
+>                    <div class="register" id="register" style="display:none;">
+                        <p class="survey-question">Enter your email below to claim your 55 FREE Spins!</p>
+                        <input class="form-control input-email" type="email" id="Email1" name="email" value="" />
+                        <button class="btn btn-block btn--answer email-submit">Claim Now</button>
+                        <p class="rule">By clicking on "Claim Now" you accept our <a href="pp.html" target="_blank">Privacy Policy.</a></p>
+                    </div>
+                    <div class="thankyou" id="msgname" style="display:none;">
+                        <img src="images/extra_bonus.png" class="popup-offer" alt="">
+                        <p class="copy-code">Copy the coupon code below, then click Continue to claim your FREE Spins!</p>
+                        <div class="ContentCode">
+                            <div id="Ccode" class="code">CABIN777</div>
+                            <button class="copyBtn Transitions" id="BtnCopy">COPY COUPON</button>
+                            <button class="btn btn-block btn--answer btn-thankyou" onclick="go()">Continue</button>
+                            <p class="rule">*Redeem the coupon at the Cashier after making a $20 Deposit! Over $200 in free wagers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</html>
